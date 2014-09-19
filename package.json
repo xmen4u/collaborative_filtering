@@ -4,7 +4,7 @@
   "description": "collaborative filtering algorithms",
   "main": "index.js",
   "scripts": {
-    "test": "for f in tests/*; do echo \"$f\"; node  \"$f\"; done; echo 'passed!'; exit 0"
+    "test": "grunt travis --verbose"
   },
   "keywords": [
     "collaborative",

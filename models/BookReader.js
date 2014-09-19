@@ -30,7 +30,7 @@ BookReader.prototype.getBookRatingsList = function(){
 BookReader.prototype.getRatingList = function(){return this.getBookRatingsList()}
 
 BookReader.prototype.getBookRating = function(book_name){
-	var i
+	var i,
 		len = this.books_list.length;
 
 	for(i = 0; i < len; i++){

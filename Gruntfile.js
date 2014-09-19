@@ -19,6 +19,9 @@ module.exports = function (grunt) {
         '!node_modules/**/*'
       ]
     },
+   lint: {
+      files: ['lib/*.js']
+    },
     watch: {  // grunt-contrib-watch
       all: {
         files: [
@@ -30,8 +33,9 @@ module.exports = function (grunt) {
     }
   });
   grunt.loadNpmTasks('grunt-contrib-jshint')
+  grunt.registerTask('travis', 'lint')
   grunt.registerTask('default', [
-    'jshint',
-    'watch'
+    'jshint'//,
+ //   'watch'
   ]);
 };
