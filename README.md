@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/xmen4u/collaborative_filtering.svg)](https://travis-ci.org/xmen4u/collaborative_filtering)
+
+
 Collaborative Filtering 
 ============================================
 
