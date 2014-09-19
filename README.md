@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/xmen4u/collaborative_filtering.svg)](https://travis-ci.org/xmen4u/collaborative_filtering)
 
 
-Collaborative Filtering 
+## Collaborative Filtering 
 ============================================
 
 A node module, that uses Collaborative filtering for the use of recommendations, it allows you out of the box,
@@ -14,7 +14,7 @@ using jSHint, matchdep , stream, grunt.js
 
 Use this with my permission only
 
-ToC
+## ToC
 ---------------------
 
 1. [Main app](#main)
@@ -24,7 +24,7 @@ ToC
 ---------------------
 
 
-Install
+## Install
 ```
 npm install collaborative_filtering
 ```
@@ -33,7 +33,7 @@ place the ```distance.js``` where ever you want and include it, i've used an iOc
 so you could adjust it and plug-it in the module
 
 
-Initialization
+## Initialization
 
 we need to initialize the distance object, you can add any distance metric you wish 
 to distance.js
@@ -73,5 +73,6 @@ finally we run the collaborative filtering, for example "item-based":
 ```
 
 
-License
+## License
+
 BSD -  ask for my permission

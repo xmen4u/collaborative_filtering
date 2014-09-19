@@ -1,0 +1,109 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish', './', '--tag', 'beta' ]
+2 info using npm@1.4.27
+3 info using node@v0.10.31
+4 verbose publish [ './' ]
+5 verbose cache add [ './', null ]
+6 verbose cache add name=undefined spec="./" args=["./",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: './',
+7 verbose parsed url   path: './',
+7 verbose parsed url   href: './' }
+8 silly lockFile 0ee6c175- ./
+9 verbose lock ./ /Users/gtam/.npm/0ee6c175-.lock
+10 verbose tar pack [ '/Users/gtam/.npm/collaborative_filtering/1.0.0/package.tgz',
+10 verbose tar pack   './' ]
+11 verbose tarball /Users/gtam/.npm/collaborative_filtering/1.0.0/package.tgz
+12 verbose folder ./
+13 info prepublish collaborative_filtering@1.0.0
+14 silly lockFile 04cb2bca-tar tar://./
+15 verbose lock tar://./ /Users/gtam/.npm/04cb2bca-tar.lock
+16 silly lockFile acae2bd9-tive-filtering-1-0-0-package-tgz tar:///Users/gtam/.npm/collaborative_filtering/1.0.0/package.tgz
+17 verbose lock tar:///Users/gtam/.npm/collaborative_filtering/1.0.0/package.tgz /Users/gtam/.npm/acae2bd9-tive-filtering-1-0-0-package-tgz.lock
+18 silly lockFile 04cb2bca-tar tar://./
+19 silly lockFile 04cb2bca-tar tar://./
+20 silly lockFile acae2bd9-tive-filtering-1-0-0-package-tgz tar:///Users/gtam/.npm/collaborative_filtering/1.0.0/package.tgz
+21 silly lockFile acae2bd9-tive-filtering-1-0-0-package-tgz tar:///Users/gtam/.npm/collaborative_filtering/1.0.0/package.tgz
+22 silly lockFile 17abf8dc-borative-filtering-1-0-0-package /Users/gtam/.npm/collaborative_filtering/1.0.0/package
+23 verbose lock /Users/gtam/.npm/collaborative_filtering/1.0.0/package /Users/gtam/.npm/17abf8dc-borative-filtering-1-0-0-package.lock
+24 silly lockFile 17abf8dc-borative-filtering-1-0-0-package /Users/gtam/.npm/collaborative_filtering/1.0.0/package
+25 silly lockFile 17abf8dc-borative-filtering-1-0-0-package /Users/gtam/.npm/collaborative_filtering/1.0.0/package
+26 silly lockFile 0ee6c175- ./
+27 silly lockFile 0ee6c175- ./
+28 silly publish { name: 'collaborative_filtering',
+28 silly publish   version: '1.0.0',
+28 silly publish   description: 'collaborative filtering algorithms',
+28 silly publish   main: 'index.js',
+28 silly publish   scripts: { test: 'grunt travis --verbose' },
+28 silly publish   keywords: [ 'collaborative', 'filtering', 'recommendation', 'classify' ],
+28 silly publish   author: { name: 'Gil Tamari' },
+28 silly publish   license: 'BSD',
+28 silly publish   dependencies:
+28 silly publish    { grunt: '^0.4.5',
+28 silly publish      'grunt-contrib-jshint': '^0.10.0',
+28 silly publish      'grunt-contrib-watch': '^0.6.1',
+28 silly publish      jshint: '^2.5.5',
+28 silly publish      matchdep: '^0.3.0' },
+28 silly publish   devDependencies:
+28 silly publish    { 'grunt-contrib-jshint': '^0.10.0',
+28 silly publish      'grunt-contrib-watch': '^0.6.1' },
+28 silly publish   readme: '[![Build Status](https://travis-ci.org/xmen4u/collaborative_filtering.svg)](https://travis-ci.org/xmen4u/collaborative_filtering)\n\n\nCollaborative Filtering \n============================================\n\nA node module, that uses Collaborative filtering for the use of recommendations, it allows you out of the box,\nto use distance similarity / pearson/ others or custom one [depending on the need]\n\nIt is also provided with a full example of usage and dataset creation.\nI hope to provide a working stack [FE + BE] to use this with real-time and cache capabilities\n\nusing jSHint, matchdep , stream, grunt.js \n\nUse this with my permission only\n\nToC\n---------------------\n\n1. [Main app](#main)\n\n\n<a name="main">Main app</a>\n---------------------\n\n\nInstall\n```\nnpm install collaborative_filtering\n```\n\nplace the ```distance.js``` where ever you want and include it, i\'ve used an iOc style \nso you could adjust it and plug-it in the module\n\n\nInitialization\n\nwe need to initialize the distance object, you can add any distance metric you wish \nto distance.js\n```\nvar readers = require(\'./recommendations.js\'), // creation of the dataset\n\tCollaborative = require(\'../lib/collaborative\'),\n\tDistance = require(\'../lib/distance\'),\n\tcollab = new Collaborative(new Distance()),\n```\nafter initialization, you need to create a multi-dimensional vector, an array of arrays:\n```[[1,2],[1,4],[2,5],[5,9],...,[10,12]]```\njust like the "creation of the data set line", you can find the model inside /models , it looks like:\n\n```\n\n\nin code we grab it via stream from a line-by-line [newline] structured flat file [so we won\'t have limit on memory space]\n```\n// people\n\tperson1 = readers[0],\n\tperson2 = readers[1],\n\tperson7 = readers[6]\n\nconsole.log(\'comparing \' + person1.getName() + \' and \' + person2.getName())\nconsole.log(\'Distance correlation: \' + collab.simDistance(person1,person2))\nconsole.log(\'Pearson correlation: \' + collab.simPearson(person1,person2))\n\nconsole.log(collab.getSimiliarItems(readers, person1, 5))\nconsole.log(collab.getRecommendations(readers,person7))\n\n```\nfinally we run the collaborative filtering, for example "item-based":\n```\n\t[ { rating: 3.4682459444748344, id: \'And Then There Were None\' },\n\t  { rating: 3, id: \'A Tale of Two Cities\' },\n\t  { rating: 2.319573433326274, id: \'The Hobbit\' } ]\n```\n\n\nLicense\nBSD -  ask for my permission',
+28 silly publish   readmeFilename: 'README.md',
+28 silly publish   gitHead: 'a5a2bc3317727f3a540e472f3a1e28784de7d0a0',
+28 silly publish   _id: 'collaborative_filtering@1.0.0',
+28 silly publish   _shasum: 'd5ca7ef1bbe482cf2f911a4733afb652b67345a9',
+28 silly publish   _from: './' }
+29 verbose request where is /collaborative_filtering
+30 verbose request registry https://registry.npmjs.org/
+31 verbose request id 33778d561f5da2a4
+32 verbose url raw /collaborative_filtering
+33 verbose url resolving [ 'https://registry.npmjs.org/', './collaborative_filtering' ]
+34 verbose url resolved https://registry.npmjs.org/collaborative_filtering
+35 verbose request where is https://registry.npmjs.org/collaborative_filtering
+36 info trying registry request attempt 1 at 01:04:44
+37 http PUT https://registry.npmjs.org/collaborative_filtering
+38 http 403 https://registry.npmjs.org/collaborative_filtering
+39 verbose headers { date: 'Fri, 19 Sep 2014 22:04:47 GMT',
+39 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+39 verbose headers   'content-type': 'application/json',
+39 verbose headers   'cache-control': 'max-age=60',
+39 verbose headers   'content-length': '5169',
+39 verbose headers   'accept-ranges': 'bytes',
+39 verbose headers   via: '1.1 varnish',
+39 verbose headers   'x-served-by': 'cache-lcy1134-LCY',
+39 verbose headers   'x-cache': 'MISS',
+39 verbose headers   'x-cache-hits': '0',
+39 verbose headers   'x-timer': 'S1411164287.091813,VS0,VE613',
+39 verbose headers   'keep-alive': 'timeout=10, max=50',
+39 verbose headers   connection: 'Keep-Alive' }
+40 error publish Failed PUT 403
+41 error Error: forbidden cannot modify pre-existing version: 1.0.0
+41 error old={"name":"collaborative_filtering","version":"1.0.0","description":"collaborative filtering algorithms","main":"index.js","scripts":{"test":"grunt travis --verbose"},"keywords":["collaborative","filtering","recommendation","classify"],"author":{"name":"Gil Tamari"},"license":"BSD","dependencies":{"grunt":"^0.4.5","grunt-contrib-jshint":"^0.10.0","grunt-contrib-watch":"^0.6.1","jshint":"^2.5.5","matchdep":"^0.3.0"},"devDependencies":{"grunt-contrib-jshint":"^0.10.0","grunt-contrib-watch":"^0.6.1"},"gitHead":"a5a2bc3317727f3a540e472f3a1e28784de7d0a0","_id":"collaborative_filtering@1.0.0","_shasum":"d5ca7ef1bbe482cf2f911a4733afb652b67345a9","_from":".","_npmVersion":"1.4.27","_npmUser":{"name":"xmen4u","email":"xmen4u@gmail.com"},"maintainers":[{"name":"xmen4u","email":"xmen4u@gmail.com"}],"dist":{"shasum":"d5ca7ef1bbe482cf2f911a4733afb652b67345a9","tarball":"http://registry.npmjs.org/collaborative_filtering/-/collaborative_filtering-1.0.0.tgz"}}
+41 error new={"name":"collaborative_filtering","version":"1.0.0","description":"collaborative filtering algorithms","main":"index.js","scripts":{"test":"grunt travis --verbose"},"keywords":["collaborative","filtering","recommendation","classify"],"author":{"name":"Gil Tamari"},"license":"BSD","dependencies":{"grunt":"^0.4.5","grunt-contrib-jshint":"^0.10.0","grunt-contrib-watch":"^0.6.1","jshint":"^2.5.5","matchdep":"^0.3.0"},"devDependencies":{"grunt-contrib-jshint":"^0.10.0","grunt-contrib-watch":"^0.6.1"},"readme":"[![Build Status](https://travis-ci.org/xmen4u/collaborative_filtering.svg)](https://travis-ci.org/xmen4u/collaborative_filtering)\u000a\u000a\u000aCollaborative Filtering \u000a============================================\u000a\u000aA node module, that uses Collaborative filtering for the use of recommendations, it allows you out of the box,\u000ato use distance similarity / pearson/ others or custom one [depending on the need]\u000a\u000aIt is also provided with a full example of usage and dataset creation.\u000aI hope to provide a working stack [FE + BE] to use this with real-time and cache capabilities\u000a\u000ausing jSHint, matchdep , stream, grunt.js \u000a\u000aUse this with my permission only\u000a\u000aToC\u000a---------------------\u000a\u000a1. [Main app](#main)\u000a\u000a\u000a<a name=\"main\">Main app</a>\u000a---------------------\u000a\u000a\u000aInstall\u000a```\u000anpm install collaborative_filtering\u000a```\u000a\u000aplace the ```distance.js``` where ever you want and include it, i've used an iOc style \u000aso you could adjust it and plug-it in the module\u000a\u000a\u000aInitialization\u000a\u000awe need to initialize the distance object, you can add any distance metric you wish \u000ato distance.js\u000a```\u000avar readers = require('./recommendations.js'), // creation of the dataset\u000a\u0009Collaborative = require('../lib/collaborative'),\u000a\u0009Distance = require('../lib/distance'),\u000a\u0009collab = new Collaborative(new Distance()),\u000a```\u000aafter initialization, you need to create a multi-dimensional vector, an array of arrays:\u000a```[[1,2],[1,4],[2,5],[5,9],...,[10,12]]```\u000ajust like the \"creation of the data set line\", you can find the model inside /models , it looks like:\u000a\u000a```\u000a\u000a\u000ain code we grab it via stream from a line-by-line [newline] structured flat file [so we won't have limit on memory space]\u000a```\u000a// people\u000a\u0009person1 = readers[0],\u000a\u0009person2 = readers[1],\u000a\u0009person7 = readers[6]\u000a\u000aconsole.log('comparing ' + person1.getName() + ' and ' + person2.getName())\u000aconsole.log('Distance correlation: ' + collab.simDistance(person1,person2))\u000aconsole.log('Pearson correlation: ' + collab.simPearson(person1,person2))\u000a\u000aconsole.log(collab.getSimiliarItems(readers, person1, 5))\u000aconsole.log(collab.getRecommendations(readers,person7))\u000a\u000a```\u000afinally we run the collaborative filtering, for example \"item-based\":\u000a```\u000a\u0009[ { rating: 3.4682459444748344, id: 'And Then There Were None' },\u000a\u0009  { rating: 3, id: 'A Tale of Two Cities' },\u000a\u0009  { rating: 2.319573433326274, id: 'The Hobbit' } ]\u000a```\u000a\u000a\u000aLicense\u000aBSD -  ask for my permission","readmeFilename":"README.md","gitHead":"a5a2bc3317727f3a540e472f3a1e28784de7d0a0","_id":"collaborative_filtering@1.0.0","_shasum":"d5ca7ef1bbe482cf2f911a4733afb652b67345a9","_from":"./","_npmVersion":"1.4.27","_npmUser":{"name":"xmen4u","email":"xmen4u@gmail.com"},"maintainers":[{"name":"xmen4u","email":"xmen4u@gmail.com"}],"dist":{"shasum":"d5ca7ef1bbe482cf2f911a4733afb652b67345a9","tarball":"http://registry.npmjs.org/collaborative_filtering/-/collaborative_filtering-1.0.0.tgz"}}: collaborative_filtering
+41 error     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:308:14)
+41 error     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:246:65)
+41 error     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:236:22)
+41 error     at Request.emit (events.js:98:17)
+41 error     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1142:14)
+41 error     at Request.emit (events.js:117:20)
+41 error     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1096:12)
+41 error     at IncomingMessage.emit (events.js:117:20)
+41 error     at _stream_readable.js:943:16
+41 error     at process._tickCallback (node.js:419:13)
+42 error If you need help, you may report this *entire* log,
+42 error including the npm and node versions, at:
+42 error     <http://github.com/npm/npm/issues>
+43 error System Darwin 13.3.0
+44 error command "node" "/usr/local/bin/npm" "publish" "./" "--tag" "beta"
+45 error cwd /Users/gtam/projects/nodejs/algos/collaborative_filtering
+46 error node -v v0.10.31
+47 error npm -v 1.4.27
+48 verbose exit [ 1, true ]
