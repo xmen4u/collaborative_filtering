@@ -68,3 +68,7 @@ finally we run the collaborative filtering, for example "item-based":
 	  { rating: 3, id: 'A Tale of Two Cities' },
 	  { rating: 2.319573433326274, id: 'The Hobbit' } ]
 ```
+
+
+License
+BSD -  ask for my permission
