@@ -21,14 +21,6 @@ ToC
 ---------------------
 
 
-
-points over map:
-
-![](https://raw.githubusercontent.com/xmen4u/dbscan/master/img1.png)
-
-![](https://raw.githubusercontent.com/xmen4u/dbscan/master/img2.png)
-
-
 Install
 ```
 npm install collaborative_filtering
