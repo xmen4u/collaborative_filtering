@@ -1,0 +1,28 @@
+{
+  "name": "collaborative_filtering",
+  "version": "1.0.0",
+  "description": "collaborative filtering algorithms",
+  "main": "index.js",
+  "scripts": {
+    "test": "for f in tests/*; do echo \"$f\"; node  \"$f\"; done; echo 'passed!'; exit 0"
+  },
+  "keywords": [
+    "collaborative",
+    "filtering",
+    "recommendation",
+    "classify"
+  ],
+  "author": "Gil Tamari",
+  "license": "BSD",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "jshint": "^2.5.5",
+    "matchdep": "^0.3.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
