@@ -11,30 +11,36 @@
 * date: oct-2012
 ********************************************************************************************
 **/
+
+
 function BookReader(first_name, last_name, id, books_BookReader_list){
 	this.first_name  = first_name
 	this.last_name   = last_name
 	this.name        = this.first_name + ' ' + this.last_name
 	this.id          = id || 1
-	this.books_list = books_BookReader_list || []
+	this.rating_list = books_BookReader_list || []
 }
 BookReader.prototype.getId = function(){ return this.id}
 BookReader.prototype.getName = function(){ return this.name}
 // book rating = 1..5
 BookReader.prototype.addBookRating = function(book_name, book_rating){
-	this.books_list.push({name: book_name, rating: book_rating, getId: function(){ return book_name} })
+	this.rating_list.push({name: book_name, rating: book_rating, getId: function(){ return book_name}, getName: function(){return book_name}  })
+}
+BookReader.prototype.addRating = function(name, rating, id){
+	id = id || name
+	this.rating_list.push({name: name, rating: rating, getId: function(){ return id} })
 }
 BookReader.prototype.getBookRatingsList = function(){
-	return this.books_list
+	return this.rating_list
 }
 BookReader.prototype.getRatingList = function(){return this.getBookRatingsList()}
 
 BookReader.prototype.getBookRating = function(book_name){
 	var i,
-		len = this.books_list.length;
+		len = this.rating_list.length;
 
 	for(i = 0; i < len; i++){
-		if (this.books_list[i].name === book_name){
+		if (this.rating_list[i].name === book_name){
 			return i
 		}// if
 	}// for
